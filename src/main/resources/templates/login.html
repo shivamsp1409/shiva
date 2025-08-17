@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>LMS - Login</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+		<div class="min-h-screen flex items-center justify-center p-6">
+			<div class="w-full max-w-md bg-white/80 backdrop-blur rounded-2xl shadow-xl p-8 border border-indigo-100">
+				<div class="text-center mb-6">
+					<div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-indigo-600 text-white text-2xl font-bold shadow">
+						L
+					</div>
+					<h1 class="mt-4 text-2xl font-semibold text-gray-800">Welcome to LMS</h1>
+					<p class="text-gray-500">Student login</p>
+				</div>
+
+				<form action="/login" method="post" class="space-y-5">
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Full name</label>
+						<input name="fullName" type="text" placeholder="Jane Doe"
+							class="mt-1 w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm" required />
+					</div>
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Email</label>
+						<input name="email" type="email" placeholder="jane@example.com"
+							class="mt-1 w-full rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm" required />
+					</div>
+					<button type="submit"
+						class="w-full inline-flex justify-center items-center gap-2 rounded-xl bg-indigo-600 text-white py-3 font-medium shadow hover:bg-indigo-700 transition">
+						Sign in
+					</button>
+				</form>
+
+				<div class="mt-4 text-center text-sm text-gray-500">
+					Use any name and email to continue
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

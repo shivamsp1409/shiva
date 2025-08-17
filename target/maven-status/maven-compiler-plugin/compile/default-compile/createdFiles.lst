@@ -1,0 +1,5 @@
+com/example/lms/controller/AuthController.class
+com/example/lms/config/WebConfig.class
+com/example/lms/controller/DashboardController.class
+com/example/lms/model/Student.class
+com/example/lms/LmsApplication.class
