@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>LMS - Dashboard</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body class="min-h-screen bg-gray-50">
+		<!-- Navbar -->
+		<header class="bg-white border-b border-gray-200">
+			<div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+				<div class="flex items-center gap-3">
+					<div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold">L</div>
+					<div class="text-xl font-semibold text-gray-800">LMS - Student</div>
+				</div>
+				<a href="/logout" class="px-4 py-2 rounded-lg bg-gray-800 text-white hover:bg-black transition">Logout</a>
+			</div>
+		</header>
+
+		<main class="max-w-6xl mx-auto px-4 py-8">
+			<!-- Profile Card -->
+			<div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+				<div class="p-6 md:p-8 flex flex-col md:flex-row items-center gap-8">
+					<!-- Avatar -->
+					<div class="relative group">
+						<form id="avatar-form" action="/profile/avatar" method="post" enctype="multipart/form-data">
+							<input id="avatar-input" name="avatar" type="file" accept="image/*" class="hidden" />
+						</form>
+						<div id="avatar-click" class="w-32 h-32 rounded-full ring-4 ring-indigo-100 overflow-hidden cursor-pointer relative">
+							<img id="avatar-img" th:src="${student.avatarUrl} != null ? ${student.avatarUrl} : @{/assets/avatar-placeholder.svg}"
+								alt="Avatar" class="w-full h-full object-cover" />
+							<div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition flex items-end justify-center">
+								<span class="mb-3 text-white text-xs bg-black/50 px-2 py-1 rounded">Click to change</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Details -->
+					<div class="flex-1 w-full">
+						<h2 class="text-2xl font-semibold text-gray-800" th:text="${student.fullName}">Student Name</h2>
+						<p class="text-gray-500" th:text="${student.email}">student@example.com</p>
+
+						<div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+							<div class="p-4 rounded-xl border border-gray-200">
+								<div class="text-sm text-gray-500">Enrolled Courses</div>
+								<div class="mt-1 text-2xl font-semibold">5</div>
+							</div>
+							<div class="p-4 rounded-xl border border-gray-200">
+								<div class="text-sm text-gray-500">Completed</div>
+								<div class="mt-1 text-2xl font-semibold">2</div>
+							</div>
+							<div class="p-4 rounded-xl border border-gray-200">
+								<div class="text-sm text-gray-500">Progress</div>
+								<div class="mt-1 text-2xl font-semibold">40%</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Courses section (placeholder) -->
+			<div class="mt-8">
+				<h3 class="text-lg font-semibold text-gray-800 mb-4">My Courses</h3>
+				<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+					<div class="p-5 bg-white rounded-xl border border-gray-200">
+						<div class="font-medium">Intro to Programming</div>
+						<div class="text-sm text-gray-500">Continue where you left off →</div>
+					</div>
+					<div class="p-5 bg-white rounded-xl border border-gray-200">
+						<div class="font-medium">Data Structures</div>
+						<div class="text-sm text-gray-500">New content available</div>
+					</div>
+					<div class="p-5 bg-white rounded-xl border border-gray-200">
+						<div class="font-medium">Web Development</div>
+						<div class="text-sm text-gray-500">Assignment due Friday</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<!-- Inline SVG asset for placeholder avatar -->
+		<svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+			<symbol id="avatar-placeholder" viewBox="0 0 100 100">
+				<circle cx="50" cy="50" r="50" fill="#EEF2FF"/>
+				<circle cx="50" cy="40" r="18" fill="#C7D2FE"/>
+				<path d="M15 90c8-18 28-26 35-26s27 8 35 26" fill="#C7D2FE"/>
+			</symbol>
+		</svg>
+
+		<script>
+			const avatarClick = document.getElementById('avatar-click');
+			const avatarInput = document.getElementById('avatar-input');
+			const avatarImg = document.getElementById('avatar-img');
+			avatarClick.addEventListener('click', () => avatarInput.click());
+			avatarInput.addEventListener('change', () => {
+				const file = avatarInput.files && avatarInput.files[0];
+				if (!file) return;
+				const reader = new FileReader();
+				reader.onload = e => {
+					avatarImg.src = e.target.result;
+					document.getElementById('avatar-form').submit();
+				};
+				reader.readAsDataURL(file);
+			});
+		</script>
+	</body>
+</html>

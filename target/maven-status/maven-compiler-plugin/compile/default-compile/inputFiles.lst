@@ -1,0 +1,5 @@
+/workspace/src/main/java/com/example/lms/LmsApplication.java
+/workspace/src/main/java/com/example/lms/config/WebConfig.java
+/workspace/src/main/java/com/example/lms/controller/AuthController.java
+/workspace/src/main/java/com/example/lms/controller/DashboardController.java
+/workspace/src/main/java/com/example/lms/model/Student.java
